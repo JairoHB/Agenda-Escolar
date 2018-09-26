@@ -103,13 +103,13 @@
         android:ems="10"
         android:hint="Confirmar Contraseña"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/angry_btn"
+        app:layout_constraintBottom_toTopOf="@+id/btn_reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/angry_btn"
+        android:id="@+id/btn_reg"
         android:layout_width="250dp"
         android:layout_height="33dp"
         android:layout_alignParentBottom="true"
