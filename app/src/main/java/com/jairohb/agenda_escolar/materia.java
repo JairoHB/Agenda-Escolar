@@ -5,19 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+import android.widget.ImageButton;
 
-
-public class menu extends Activity {
+public class materia extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu);
+        setContentView(R.layout.add_materia);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addmat_task);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton btnback = (ImageButton) findViewById(R.id.imgbtnbackmat);
+        btnback.setImageResource(R.drawable.ic_action_back);
+        btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(menu.this, materia.class);
+                Intent intent = new Intent(materia.this, menu.class);
                 startActivity(intent);
             }
         });
