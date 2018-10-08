@@ -13,25 +13,29 @@ public class login extends AppCompatActivity {
     DatabaseHelper db;
     EditText username, password;
     Button btninicio;
+
+    private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
         db= new DatabaseHelper(this);
         username=(EditText)findViewById(R.id.txtuser);
         password=(EditText)findViewById(R.id.txtpass);
         btninicio=(Button)findViewById(R.id.btn_inicio);
+        session = new Session(this);
 
         btninicio.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String usn = username.getText().toString();
                 String pas = password.getText().toString();
-                Boolean login1 = db.login_name(usn, pas);
+                String login1 = db.login_name(usn, pas);
                 //username=jairo27 pass=123
-                if(login1==false){
+                if(!login1.equals("0")){
                     Toast.makeText(getApplicationContext(),"Incio Sesión Con Exito", Toast.LENGTH_SHORT).show();
+                    session.setid(login1);
+                    session.setusername(usn);
                     Intent intent = new Intent(login.this, menu.class);
                     startActivity(intent);
                 }

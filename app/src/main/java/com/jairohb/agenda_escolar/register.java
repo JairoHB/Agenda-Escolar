@@ -40,8 +40,11 @@ public class register extends AppCompatActivity {
                             Boolean chkemail1 = db.chkemail(ema);
                             if(chkemail1==true){
                                 Boolean insert1 = db.insert(usn,ema,pas);
-                                if(insert1==true){
+                                if(insert1==false){
                                     Toast.makeText(getApplicationContext(),"Registro Con Exito", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else{

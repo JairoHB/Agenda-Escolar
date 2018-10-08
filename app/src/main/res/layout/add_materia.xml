@@ -116,8 +116,10 @@
         android:layout_alignTop="@+id/textView13"
         android:background="#11000000"
         android:ems="10"
-        android:hint="26-09-2018"
-        android:inputType="date" />
+        android:hint="Fecha limite de tu tarea"
+        android:inputType="date"
+        android:clickable="true"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/textView14"
@@ -131,6 +133,7 @@
         android:textSize="18sp" />
 
     <RadioGroup
+        android:id="@+id/estadogroup"
         android:layout_width="135dp"
         android:layout_height="154dp"
         android:layout_alignParentBottom="true"
@@ -160,7 +163,7 @@
     </RadioGroup>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_sms_task"
+        android:id="@+id/fab_addtar_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
