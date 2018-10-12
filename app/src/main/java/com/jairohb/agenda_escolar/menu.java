@@ -9,10 +9,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.jairohb.agenda_escolar.Adaptadores.ListaTareasAdapter;
 import com.jairohb.agenda_escolar.Entidades.Tareas;
+import com.jairohb.agenda_escolar.utils.PreferenceUtils;
+
 import java.util.ArrayList;
 
 public class menu extends Activity {
@@ -49,6 +53,18 @@ public class menu extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(menu.this, materia.class);
                 startActivity(intent);
+            }
+        });
+
+        ImageButton btnlogout = (ImageButton) findViewById(R.id.btnlogout);
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceUtils.savePassword(null, getApplicationContext());
+                PreferenceUtils.saveuser(null, getApplicationContext());
+                Intent intent = new Intent(menu.this, login.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

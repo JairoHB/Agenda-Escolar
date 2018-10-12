@@ -3,6 +3,7 @@ package com.jairohb.agenda_escolar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class edit_materia extends Activity {
     EditText tarea, materia1, desc, fecha;
     RadioButton rbpr, rbr, rbt;
     Button btndelete, btnupdate;
+    ImageButton imgbtnback;
     DatabaseHelper conn;
     private Session session;
 
@@ -36,6 +39,7 @@ public class edit_materia extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_materia);
+
         session = new Session(this);
         final String id = getIntent().getStringExtra("id");
         conn=new DatabaseHelper(getApplicationContext());
@@ -49,6 +53,8 @@ public class edit_materia extends Activity {
         consultarSql(id);
         btnupdate=(Button)findViewById(R.id.btneditup);
         btndelete=(Button)findViewById(R.id.btneditde);
+        imgbtnback=(ImageButton)findViewById(R.id.imgbtneditbackmat);
+        imgbtnback.setImageResource(R.drawable.ic_action_back);
 
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +120,14 @@ public class edit_materia extends Activity {
             @Override
             public void onClick(View v) {
                 eliminarTarea(id);
+            }
+        });
+
+        imgbtnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(edit_materia.this, menu.class);
+                startActivity(intent);
             }
         });
     }

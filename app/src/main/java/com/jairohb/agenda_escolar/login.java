@@ -1,5 +1,6 @@
 package com.jairohb.agenda_escolar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,16 +10,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jairohb.agenda_escolar.utils.PreferenceUtils;
+
 public class login extends AppCompatActivity {
     DatabaseHelper db;
     EditText username, password;
     Button btninicio;
+    private Context mContext;
 
     private Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        initViews();
+
         db= new DatabaseHelper(this);
         username=(EditText)findViewById(R.id.txtuser);
         password=(EditText)findViewById(R.id.txtpass);
@@ -36,6 +42,8 @@ public class login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Incio Sesión Con Exito", Toast.LENGTH_SHORT).show();
                         session.setid(login1);
                         session.setusername(usn);
+                        PreferenceUtils.saveuser(usn, getApplicationContext());
+                        PreferenceUtils.savePassword(pas, getApplicationContext());
                         Intent intent = new Intent(login.this, menu.class);
                         startActivity(intent);
                     }
@@ -54,5 +62,15 @@ public class login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initViews(){
+        PreferenceUtils utils = new PreferenceUtils();
+        if (utils.getuser(this) != null ){
+            Intent intent = new Intent(login.this, menu.class);
+            startActivity(intent);
+        }else{
+
+        }
     }
 }
