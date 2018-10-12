@@ -33,8 +33,15 @@ public class menu extends Activity {
         recyclerViewTareas.setLayoutManager(new LinearLayoutManager(this));
         Integer userid = Integer.valueOf(session.getid());
         listaTareas= bd.consultarListaTareas(userid);
-        ListaTareasAdapter adapter = new ListaTareasAdapter(listaTareas);
-        recyclerViewTareas.setAdapter(adapter);
+
+        if(listaTareas.size()>=1){
+            ListaTareasAdapter adapter = new ListaTareasAdapter(this, listaTareas);
+            recyclerViewTareas.setAdapter(adapter);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"¡Registra tus tareas!", Toast.LENGTH_SHORT).show();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_addmat_task);
         fab.setOnClickListener(new View.OnClickListener() {

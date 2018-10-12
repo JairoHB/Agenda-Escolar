@@ -10,22 +10,24 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imgbtnbackmat"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/helveticaneuethin"
-        android:text="Registrar Nueva Tarea"
+        android:text="Editar Tarea"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="16dp" />
 
     <ImageButton
-        android:id="@+id/imgbtnbackmat"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
+        android:id="@+id/imgbtneditbackmat"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_alignParentTop="true"
-        android:background="@android:color/background_light"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_marginTop="12dp"
+        android:background="#ffffff"
         app:srcCompat="@drawable/ic_action_back" />
 
     <TextView
@@ -41,7 +43,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txtmateria"
+        android:id="@+id/txteditmateria"
         android:layout_width="257dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -64,7 +66,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txttitulo"
+        android:id="@+id/txtedittitulo"
         android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -87,7 +89,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txtdesc"
+        android:id="@+id/txteditdesc"
         android:layout_width="311dp"
         android:layout_height="87dp"
         android:layout_below="@+id/textView12"
@@ -102,32 +104,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_marginBottom="223dp"
+        android:layout_alignStart="@+id/imgbtneditbackmat"
+        android:layout_marginBottom="275dp"
         android:text="Fecha Limite:"
         android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/txtfecha"
+        android:id="@+id/txteditfecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/txtmateria"
+        android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/textView13"
+        android:layout_marginEnd="24dp"
         android:background="#11000000"
-        android:ems="10"
-        android:hint="Fecha limite de tu tarea"
-        android:inputType="date"
         android:clickable="true"
-        android:focusable="false"/>
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Fecha limite de tu tarea"
+        android:inputType="date" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_marginBottom="175dp"
+        android:layout_alignStart="@+id/imgbtneditbackmat"
+        android:layout_marginBottom="235dp"
         android:text="Estado:"
         android:textColor="@color/colorAccent"
         android:textSize="18sp" />
@@ -136,43 +139,53 @@
         android:id="@+id/estadogroup"
         android:layout_width="135dp"
         android:layout_height="154dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="55dp"
-        android:layout_toEndOf="@+id/textView10">
+        android:layout_alignTop="@+id/textView14"
+        android:layout_toEndOf="@+id/imgbtneditbackmat">
 
         <RadioButton
-            android:id="@+id/rbPR"
+            android:id="@+id/rbeditPR"
             android:layout_width="135dp"
             android:layout_height="2dp"
             android:layout_weight="1"
             android:text="Por realizar" />
 
         <RadioButton
-            android:id="@+id/rbR"
+            android:id="@+id/rbeditR"
             android:layout_width="135dp"
             android:layout_height="2dp"
             android:layout_weight="1"
             android:text="Realizando" />
 
         <RadioButton
-            android:id="@+id/rbT"
+            android:id="@+id/rbeditT"
             android:layout_width="135dp"
             android:layout_height="2dp"
             android:layout_weight="1"
             android:text="Terminada" />
     </RadioGroup>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_addtar_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/btneditde"
+        android:layout_width="87dp"
+        android:layout_height="37dp"
+        android:layout_alignTop="@+id/btneditup"
+        android:layout_toEndOf="@+id/estadogroup"
+        android:background="@drawable/buttonshapedelete"
+        android:text="Borrar"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btneditup"
+        android:layout_width="87dp"
+        android:layout_height="37dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:fabSize="normal"
-        app:layout_anchorGravity="bottom|right|end"
-        app:srcCompat="@drawable/ic_action_check" />
+        android:layout_marginBottom="23dp"
+        android:layout_toEndOf="@+id/imgbtneditbackmat"
+        android:background="@drawable/buttonshape"
+        android:text="Actualizar"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp" />
+
 
 </RelativeLayout>

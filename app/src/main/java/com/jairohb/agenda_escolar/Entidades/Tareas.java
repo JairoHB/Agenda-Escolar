@@ -13,12 +13,14 @@ public class Tareas implements  Serializable{
     private String tarea;
     private String materia;
     private String fecha;
+    private String id;
 
-    public Tareas(String estado, String tarea, String materia, String fecha) {
+    public Tareas(String id, String estado, String tarea, String materia, String fecha) {
         this.estado = estado;
         this.tarea = tarea;
         this.materia = materia;
         this.fecha = fecha;
+        this.id = id;
     }
 
     public Tareas(){
@@ -50,11 +52,19 @@ public class Tareas implements  Serializable{
     }
 
     public String getFecha() {
-        return estado;
+        return fecha;
     }
 
     public void setFecha(String fecha) {
-        this.estado = fecha;
+        this.fecha = fecha;
+    }
+
+    public String getid() {
+        return id;
+    }
+
+    public void setid(String id) {
+        this.id = id;
     }
 
 }

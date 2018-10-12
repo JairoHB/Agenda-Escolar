@@ -32,16 +32,16 @@ public class login extends AppCompatActivity {
                 String pas = password.getText().toString();
                 String login1 = db.login_name(usn, pas);
                 //username=jairo27 pass=123
-                if(!login1.equals("0")){
-                    Toast.makeText(getApplicationContext(),"Incio Sesión Con Exito", Toast.LENGTH_SHORT).show();
-                    session.setid(login1);
-                    session.setusername(usn);
-                    Intent intent = new Intent(login.this, menu.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Contraseña o Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-                }
+                    if(!login1.equals("0")){
+                        Toast.makeText(getApplicationContext(),"Incio Sesión Con Exito", Toast.LENGTH_SHORT).show();
+                        session.setid(login1);
+                        session.setusername(usn);
+                        Intent intent = new Intent(login.this, menu.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Contraseña o Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
     }

@@ -1,10 +1,12 @@
 package com.jairohb.agenda_escolar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class register extends AppCompatActivity {
@@ -40,8 +42,9 @@ public class register extends AppCompatActivity {
                             Boolean chkemail1 = db.chkemail(ema);
                             if(chkemail1==true){
                                 Boolean insert1 = db.insert(usn,ema,pas);
-                                if(insert1==false){
+                                if(insert1==true){
                                     Toast.makeText(getApplicationContext(),"Registro Con Exito", Toast.LENGTH_SHORT).show();
+                                    limpiar_pantalla();
                                 }
                                 else{
                                     Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_SHORT).show();
@@ -58,5 +61,26 @@ public class register extends AppCompatActivity {
                 }
             }
         });
+
+        ImageButton btnback = (ImageButton) findViewById(R.id.imgback);
+        btnback.setImageResource(R.drawable.ic_action_back);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(register.this, login.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void limpiar_pantalla(){
+        username=(EditText)findViewById(R.id.txtreg_user);
+        email=(EditText)findViewById(R.id.txtreg_email);
+        password=(EditText)findViewById(R.id.txtreg_pass);
+        password2=(EditText)findViewById(R.id.txtreg_confpass);
+
+        username.setText("");
+        email.setText("");
+        password2.setText("");
+        password.setText("");
     }
 }

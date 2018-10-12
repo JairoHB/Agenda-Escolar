@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -20,6 +21,7 @@ public class materia extends Activity {
     private Session session;
     DatabaseHelper db;
     EditText tarea, materia1, desc, fecha;
+    RadioButton rbpr, rbr, rbt;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static final String TAG = "materia";
 
@@ -29,13 +31,15 @@ public class materia extends Activity {
         setContentView(R.layout.add_materia);
 
         session = new Session(this);
-        String usn = session.getusername();
         db= new DatabaseHelper(this);
 
         tarea=(EditText)findViewById(R.id.txttitulo);
         materia1=(EditText)findViewById(R.id.txtmateria);
         desc=(EditText)findViewById(R.id.txtdesc);
         fecha=(EditText)findViewById(R.id.txtfecha);
+        rbpr=(RadioButton)findViewById(R.id.rbPR);
+        rbr=(RadioButton)findViewById(R.id.rbR);
+        rbt=(RadioButton)findViewById(R.id.rbT);
 
         fecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,13 +79,28 @@ public class materia extends Activity {
                 String des = desc.getText().toString();
                 String fec = fecha.getText().toString();
                 Integer userid = Integer.valueOf(session.getid());
+                String estado;
+                if(rbpr.isChecked()==true){
+                    estado = "1";
+                }
+                else if(rbr.isChecked()==true){
+                    estado = "2";
+                }
+                else if(rbt.isChecked()==true){
+                    estado = "3";
+                }
+                else {
+                    estado = "1"; //POR DEFECTO SE PONE 1 PORQUE LA TAREA ESTA POR REALIZARSE
+                }
+
                 if(tar.equals("") || mat.equals("") || des.equals("") || fec.equals("")){
                     Toast.makeText(getApplicationContext(),"No dejes ningun campo vacio", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Boolean insert1 = db.insertmat(userid,mat,tar,des,fec);
-                    if(insert1==false){
+                    Boolean insert1 = db.insertmat(userid,mat,tar,des,fec, estado);
+                    if(insert1==true){
                         Toast.makeText(getApplicationContext(),"Materia Registrada Con Exito", Toast.LENGTH_SHORT).show();
+                        limpiar_pantalla();
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_SHORT).show();
@@ -100,5 +119,15 @@ public class materia extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void limpiar_pantalla(){
+        tarea.setText("");
+        materia1.setText("");
+        desc.setText("");
+        fecha.setText("");
+        rbpr.setChecked(false);
+        rbr.setChecked(false);
+        rbt.setChecked(false);
     }
 }
