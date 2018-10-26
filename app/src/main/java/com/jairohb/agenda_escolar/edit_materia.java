@@ -183,6 +183,14 @@ public class edit_materia extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(edit_materia.this, menu.class);
+        startActivity(intent);
+        this.finish();
+    }
+
     private void limpiar(){
         tarea.setText("");
         materia1.setText("");
